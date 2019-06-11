@@ -6,9 +6,13 @@ $(document).ready(function() {
         const maxLength = 140;
         let currentLength = $(this).val().length;
         let remainingCharacters = maxLength - currentLength;
-        
+        console.log(remainingCharacters)
+        document.getElementById('characterCounter').innerHTML = remainingCharacters
         
     }
 
     textAreaElement.addEventListener('input', characterCount)
+
+
 });
+
