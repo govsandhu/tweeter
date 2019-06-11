@@ -18,7 +18,7 @@ body {
   margin: 0;
   color: #244751;
   background-color: #eee;
-  font-family: "Roboto Condensed", sans-serif 
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 /*
@@ -29,5 +29,6 @@ body {
    width: 450px;
    background-color: white;
    margin: 0 auto;
-   padding-top: 80px;
+   padding-top: 100px;
+   height: 500px;
  }
