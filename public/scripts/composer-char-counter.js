@@ -1,18 +1,22 @@
 
 $(document).ready(function() {
-    let textAreaElement = document.getElementById('textArea');
+    let textAreaElement = $('#textArea');
     
     function characterCount () {
         const maxLength = 140;
         let currentLength = $(this).val().length;
         let remainingCharacters = maxLength - currentLength;
-        console.log(remainingCharacters)
-        document.getElementById('characterCounter').innerHTML = remainingCharacters
-        
+
+        if (remainingCharacters < 0) {
+            $(this).siblings('#characterCounter')
+                .text(remainingCharacters)
+                .css({ 'color': 'red'});
+        } else if (remainingCharacters >= 0) {
+            $(this).siblings('#characterCounter')
+                .text(remainingCharacters)
+                .css({'color': 'black'})
+        }  
     }
-
-    textAreaElement.addEventListener('input', characterCount)
-
-
+    textAreaElement.on('input', characterCount)
 });
 
