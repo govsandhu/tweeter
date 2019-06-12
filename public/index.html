@@ -1,73 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Meta Information -->
-    <title>Tweeter - Home Page</title>
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+<head>
+  <!-- Meta Information -->
+  <title>Tweeter - Home Page</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,700,700i&display=swap" rel="stylesheet">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,700,700i&display=swap"
+    rel="stylesheet">
 
 
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
-    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
-    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
-    <!-- External JS -->
-    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+  <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+  <!-- External JS -->
+  <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-  
-  <body>
-    
-    <!-- Top nav bar (fixed) -->
-    <nav id="nav-bar"> 
-      <img class="logo" src="/images/bird.png">
-      <span class="header">Tweeter</span>
-    </nav>
-    
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <hr>
-        <form method="POST" action="/tweets">
-          <textarea id="textArea" name="text" placeholder="What are you humming about?"></textarea>
-          <input type="submit" value="Tweet">
-          <span id="characterCounter" class="counter">140</span>
-        </form>
-      </section>
-      <section class="tweets">
+  <!-- App JS -->
+  <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
+</head>
+
+<body>
+
+  <!-- Top nav bar (fixed) -->
+  <nav id="nav-bar">
+    <img class="logo" src="/images/bird.png">
+    <span class="header">Tweeter</span>
+  </nav>
+
+  <!-- Page-specific (main) content here -->
+  <main class="container">
+    <section class="new-tweet">
+      <h2>Compose Tweet</h2>
+      <hr>
+      <form method="POST" action="/tweets">
+        <textarea id="textArea" name="text" placeholder="What are you humming about?"></textarea>
+        <input type="submit" value="Tweet">
+        <span id="characterCounter" class="counter">140</span>
+      </form>
+    </section>
+    <section class="tweets" id="tweets-container">
+      <article>
         <header>
-        <article>
           <img class="avatar" src="/images/bird.png">
           <span>
-          <p class="fullName">
-            Bill Fields
-          </p>
-          <p class="userName">
-            @MrFields
-          </p>
+            <p class="fullName">
+              Bill Fields
+            </p>
+            <p class="userName">
+              @MrFields
+            </p>
           </span>
-          </header>
-          <p>
-            Little tweet herelkdjflksdjflkasdjfalskfjsldkfjasdklfjsalfjsalkfjsafaldj
-          </p>
-          <footer>
-            10 days ago
-          </footer>
-        </article>
-      </section>
-    </main>
-    
-    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
-  </body>
-  </html>
-  
+        </header>
+        <p class="text">
+          Little tweet herelkdjflksdjflkasdjfalskfjsldkfjasdklfjsalfjsalkfjsafaldj
+        </p>
+        <footer class="created-at">
+          10 days ago
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</body>
+
+</html>
