@@ -48,13 +48,17 @@ $(document).ready(() => {
     } else if ($textAreaLength === 0) {
       alert("Uh-oh. It looks like you haven't entered anything into the field.")
     } else {
-      $.post(`${baseURL}tweets`, $('#postTweet').serialize())
+      $.post(`${baseURL}tweets`, $('#postTweet').serialize(), () => {
+        loadTweets();
+      })
+     
     }
   });
 
   function loadTweets() {
     // 
     $.get(`${baseURL}tweets`, (data) => {
+      $("#tweets-container").empty()
       renderTweets(data)
     })
   }
@@ -62,7 +66,7 @@ $(document).ready(() => {
 
   function renderTweets(tweetData) {
     for(let eachTweet of tweetData){
-       $('#tweets-container').append(createTweetElement(eachTweet));   
+       $('#tweets-container').prepend(createTweetElement(eachTweet));   
     }
   }
 
@@ -101,7 +105,7 @@ $(document).ready(() => {
       return $tweet;
   }
 
-  loadTweets()
+  loadTweets();
 });
 
 
