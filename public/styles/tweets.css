@@ -1,0 +1,57 @@
+.tweets {
+    background-color: white;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    border: 2px solid black;
+    border-radius: 6px; 
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    opacity: 0.5; 
+   }
+
+.tweets:hover {
+    opacity: 1;
+}
+
+.tweets header {
+    background-color: lightgray;
+    height: 60px;
+   
+}
+
+.tweets .avatar {
+   float: left;
+   height: 45px;
+   width: 45px;
+   margin: 5px;
+}
+
+.tweets .fullName {
+    float: left;
+    font-size: 30px;
+    line-height: 0;
+    font-weight: bold;
+}
+
+.tweets .userName {
+    float: right;
+    font-size: 20px;
+    padding-right: 10px;
+    color: rgb(160, 159, 159);
+}
+
+.tweets p {
+    padding-left: 10px;
+}
+
+.tweets footer {
+    font-size: 0.75em;
+    border-top: 0.5px solid grey;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
