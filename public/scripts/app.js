@@ -29,58 +29,72 @@ function timeAgo(ts) {
   return "A long time ago"
 }
 
-const tweetData = {
-  user: {
-    fullName: "Newton",
-    avatars: {
-      small: "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-      regular: "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-      large: "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+const tweetData = [
+  {
+    "user": {
+      "fullName": "Newton",
+      "avatars": {
+        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+      },
+      "userName": "@SirIsaac"
     },
-    userName: "@SirIsaac"
+    "content": {
+      "text": "If I have seen further it is by standing on the shoulders of giants"
+    },
+    "created_at": 1461116232227
   },
-  content: {
-    text: "If I have seen further it is by standing on the shoulders of giants"
+  {
+    "user": {
+      "fullName": "Descartes",
+      "avatars": {
+        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
+        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
+        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
+      },
+      "userName": "@rd" },
+    "content": {
+      "text": "Je pense , donc je suis"
+    },
+    "created_at": 1461113959088
   },
-  created_at: 1461116232227
-};
-//   {
-//     user: {
-//       fullName: "Descartes",
-//       avatars: {
-//         small: "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-//         regular: "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-//         large: "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-//       },
-//       userName: "@rd"
-//     },
-//     content: {
-//       text: "Je pense , donc je suis"
-//     },
-//     created_at: 1461113959088
-//   },
-//   {
-//     user: {
-//       fullName: "Johann von Goethe",
-//       avatars: {
-//         small: "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-//         regular: "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-//         large: "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-//       },
-//       userName: "@johann49"
-//     },
-//     content: {
-//       text: "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-//     },
-//     created_at: 1461113796368
-//   }
+  {
+    "user": {
+      "fullName": "Johann von Goethe",
+      "avatars": {
+        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
+        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
+        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
+      },
+      "userName": "@johann49"
+    },
+    "content": {
+      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
+    },
+    "created_at": 1461113796368
+  }
+]
+
+
 // Create Tweet
 
-$(document).ready(() => {
-  function createTweetElement(tweetData) {
-    let $tweet = $("<article>").addClass("tweet");
 
-    let $newHeader = $("<header>").appendTo($tweet);
+
+
+$(document).ready(() => {
+
+  function renderTweets(tweetData) {
+    for(let eachTweet of tweetData){
+       $('#tweets-container').append( createTweetElement(eachTweet));   
+    }
+  }
+
+
+  function createTweetElement(tweetData) {
+    const $tweet = $("<article>").addClass("tweets");
+
+    const $newHeader = $("<header>").appendTo($tweet);
 
     $("<img>")
       .attr("src", tweetData.user.avatars.small)
@@ -111,10 +125,9 @@ $(document).ready(() => {
 
       return $tweet;
   }
-  var $tweet = createTweetElement(tweetData);
-  console.log('asdsadf', $tweet);
-  $("#tweets-container").append($tweet);
 
+  renderTweets(tweetData);
+  console.log(tweetData)
 });
 
 
