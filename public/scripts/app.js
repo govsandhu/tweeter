@@ -4,6 +4,9 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+const baseURL = "http://localhost:8080/"
+
+
 // calculate time ago
 function timeAgo(ts) {
   const d = new Date();
@@ -29,67 +32,39 @@ function timeAgo(ts) {
   return "A long time ago"
 }
 
-const tweetData = [
-  {
-    "user": {
-      "fullName": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "userName": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "fullName": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "userName": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "fullName": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "userName": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461113796368
-  }
-]
 
 
-// Create Tweet
-
-
-
+// Create Tweet object/Render on page
 
 $(document).ready(() => {
+  
+  // Creates a post request once a user enters a tweet, and clicks submit
+  $('#postTweet').on('submit', (event) => {
+    event.preventDefault();
+    const $textAreaLength = $('#textArea').val().length;
+
+    if($textAreaLength > 140) {
+      alert("You have exceeded the maximum character length! Please revise your post.")
+    } else if ($textAreaLength === 0) {
+      alert("Uh-oh. It looks like you haven't entered anything into the field.")
+    } else {
+      $.post(`${baseURL}tweets`, $('#postTweet').serialize())
+    }
+  });
+
+  function loadTweets() {
+    // 
+    $.get(`${baseURL}tweets`, (data) => {
+      renderTweets(data)
+    })
+  }
+
 
   function renderTweets(tweetData) {
     for(let eachTweet of tweetData){
-       $('#tweets-container').append( createTweetElement(eachTweet));   
+       $('#tweets-container').append(createTweetElement(eachTweet));   
     }
   }
-
 
   function createTweetElement(tweetData) {
     const $tweet = $("<article>").addClass("tweets");
@@ -104,13 +79,13 @@ $(document).ready(() => {
     let $newSpan = $("<span>").appendTo($newHeader);
 
     $("<p>")
-      .addClass("fullName")
-      .text(tweetData.user.fullName)
+      .addClass("name")
+      .text(tweetData.user.name)
       .appendTo($newSpan);
 
     $("<p>")
-      .addClass("userName")
-      .text(tweetData.user.userName)
+      .addClass("handle")
+      .text(tweetData.user.handle)
       .appendTo($newSpan);
 
     $("<p>")
@@ -126,8 +101,7 @@ $(document).ready(() => {
       return $tweet;
   }
 
-  renderTweets(tweetData);
-  console.log(tweetData)
+  loadTweets()
 });
 
 

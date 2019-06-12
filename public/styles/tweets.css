@@ -10,7 +10,8 @@
     margin-right: 2em;
     margin-top: 10px;
     margin-bottom: 10px;
-    opacity: 0.5; 
+    opacity: 0.5;
+    overflow: hidden; 
    }
 
 .tweets:hover {
@@ -30,14 +31,14 @@
    margin: 5px;
 }
 
-.tweets .fullName {
+.tweets .name {
     float: left;
     font-size: 25px;
     line-height: 0;
     font-weight: bold;
 }
 
-.tweets .userName {
+.tweets .handle {
     float: right;
     font-size: 15px;
     padding-right: 10px;
