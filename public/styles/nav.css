@@ -25,3 +25,19 @@
     position: fixed;
 
 }
+
+#nav-bar #compose {
+    float: right;
+    height: 60px;
+    width: 100px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 2px solid black;
+    color: slategray;
+    opacity: 0.75;
+}
+
+#nav-bar #compose:hover {
+    opacity: 1;
+    color: black;
+}

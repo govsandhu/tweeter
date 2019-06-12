@@ -38,15 +38,24 @@ function timeAgo(ts) {
 
 $(document).ready(() => {
   
-  // Creates a post request once a user enters a tweet, and clicks submit
+  $('#compose').click(() => {
+    $(".new-tweet").toggle();
+    $("#textArea").focus();
+  });
+
+  // Creates a post request once a user enters a tweet, and clicks submit. If there is an character requirements have not been met, an error message slides into place.
   $('#postTweet').on('submit', (event) => {
     event.preventDefault();
     const $textAreaLength = $('#textArea').val().length;
 
+    $('#errorMessage').slideUp("fast")
+
     if($textAreaLength > 140) {
-      alert("You have exceeded the maximum character length! Please revise your post.")
+      $('#errorMessage').slideDown("300")
+            .text("You have exceeded the maximum character length! Please revise your post.")
     } else if ($textAreaLength === 0) {
-      alert("Uh-oh. It looks like you haven't entered anything into the field.")
+      $('#errorMessage').slideDown("300")
+            .text("Uh-oh. It looks like you haven't entered anything into the field.")
     } else {
       $.post(`${baseURL}tweets`, $('#postTweet').serialize(), () => {
         loadTweets();

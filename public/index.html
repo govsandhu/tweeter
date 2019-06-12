@@ -33,6 +33,7 @@
   <nav id="nav-bar">
     <img class="logo" src="/images/bird.png">
     <span class="header">Tweeter</span>
+    <button type="button" id="compose">Compose</button>
   </nav>
 
   <!-- Page-specific (main) content here -->
@@ -42,6 +43,7 @@
       <hr>
       <form method="POST" action="/tweets" id="postTweet">
         <textarea id="textArea" name="text" placeholder="What are you humming about?"></textarea>
+        <p id="errorMessage"></p>
         <input  type="submit" value="Tweet">
         <span id="characterCounter" class="counter">140</span>
       </form>
