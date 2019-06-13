@@ -4,8 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const baseURL = "http://localhost:8080/"
-
+const baseURL = "http://localhost:8080/";
 
 // calculates how long ago a tweet was made
 function timeAgo(ts) {
@@ -30,55 +29,57 @@ function timeAgo(ts) {
     return `1 day ago`;
   }
   if (dateDifference < 1) {
-    return `A few hours ago`;
+    return `Earlier today`;
   }
 }
 
-
 $(document).ready(() => {
-  
   //Toggles new tweet section by clicking the compose button
-  $('#compose').click(() => {
+  $("#compose").click(() => {
     $(".new-tweet").slideToggle();
     $("#textArea").focus();
   });
 
   // Creates a post request once a user enters a tweet, and clicks submit. If the character requirements have not been met, an error message slides into place.
 
-  $('#postTweet').on('submit', (event) => {
+  $("#postTweet").on("submit", event => {
     event.preventDefault();
-    const $textAreaLength = $.trim($('#textArea').val()).length;
+    const $textAreaLength = $.trim($("#textArea").val()).length;
 
-    $('#errorMessage').slideUp("fast")
+    $("#errorMessage").slideUp("fast");
 
-    if($textAreaLength > 140) {
-      $('#errorMessage')
-            .text("You have exceeded the maximum character length! Please revise your post.")
-            .slideToggle()
+    if ($textAreaLength > 140) {
+      $("#errorMessage")
+        .text(
+          "You have exceeded the maximum character length! Please revise your post."
+        )
+        .slideToggle();
     } else if ($textAreaLength === 0) {
-      $('#errorMessage')
-            .text("Uh-oh. It looks like you haven't entered anything into the field.")
-            .slideToggle()
+      $("#errorMessage")
+        .text(
+          "Uh-oh. It looks like you haven't entered anything into the field."
+        )
+        .slideToggle();
     } else {
-      $.post(`${baseURL}tweets`, $('#postTweet').serialize(), () => {
+      $.post(`${baseURL}tweets`, $("#postTweet").serialize(), () => {
         loadTweets();
-      })
+      });
     }
   });
 
   //Retrieves tweets that have been posted to the /tweets URL.
   function loadTweets() {
-    $.get(`${baseURL}tweets`, (data) => {
-      $("#tweets-container").empty()
-      renderTweets(data)
-    })
+    $.get(`${baseURL}tweets`, data => {
+      $("#tweets-container").empty();
+      renderTweets(data);
+    });
   }
 
-//Renders each tweet and adds it to the tweet container making the tweet visable to the user. 
+  //Renders each tweet and adds it to the tweet container making the tweet visable to the user.
 
   function renderTweets(tweetData) {
-    for(let eachTweet of tweetData){
-       $('#tweets-container').prepend(createTweetElement(eachTweet));   
+    for (let eachTweet of tweetData) {
+      $("#tweets-container").prepend(createTweetElement(eachTweet));
     }
   }
 
@@ -115,11 +116,7 @@ $(document).ready(() => {
       .addClass("created-at")
       .text(timeAgo(tweetData.created_at));
 
-      return $tweet;
+    return $tweet;
   }
-
   loadTweets();
 });
-
-
-
