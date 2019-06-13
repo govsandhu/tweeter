@@ -46,7 +46,7 @@ $(document).ready(() => {
 
   $('#postTweet').on('submit', (event) => {
     event.preventDefault();
-    const $textAreaLength = $('#textArea').val().length;
+    const $textAreaLength = $.trim($('#textArea').val()).length;
 
     $('#errorMessage').slideUp("fast")
 
@@ -62,7 +62,6 @@ $(document).ready(() => {
       $.post(`${baseURL}tweets`, $('#postTweet').serialize(), () => {
         loadTweets();
       })
-     
     }
   });
 
