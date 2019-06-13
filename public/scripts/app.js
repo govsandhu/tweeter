@@ -20,7 +20,7 @@ function timeAgo(ts) {
   if (dateDifference > 30) {
     return `More than 1 month ago`;
   }
-  if (dateDifference > 10) {
+  if (dateDifference > 7) {
     return `More than 1 week ago`;
   }
   if (dateDifference > 1) {
@@ -37,6 +37,7 @@ function timeAgo(ts) {
 
 $(document).ready(() => {
   
+  //Toggles new tweet section by clicking the compose button
   $('#compose').click(() => {
     $(".new-tweet").slideToggle();
     $("#textArea").focus();
