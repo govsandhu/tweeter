@@ -38,7 +38,7 @@ function timeAgo(ts) {
 $(document).ready(() => {
   
   $('#compose').click(() => {
-    $(".new-tweet").toggle();
+    $(".new-tweet").slideToggle();
     $("#textArea").focus();
   });
 
@@ -51,11 +51,13 @@ $(document).ready(() => {
     $('#errorMessage').slideUp("fast")
 
     if($textAreaLength > 140) {
-      $('#errorMessage').slideDown("300")
+      $('#errorMessage')
             .text("You have exceeded the maximum character length! Please revise your post.")
+            .slideToggle()
     } else if ($textAreaLength === 0) {
-      $('#errorMessage').slideDown("300")
+      $('#errorMessage')
             .text("Uh-oh. It looks like you haven't entered anything into the field.")
+            .slideToggle()
     } else {
       $.post(`${baseURL}tweets`, $('#postTweet').serialize(), () => {
         loadTweets();
