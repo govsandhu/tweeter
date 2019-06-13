@@ -1,3 +1,4 @@
+//Creates functionality to display the current character count in the new tweet textarea. If the character count exceeds the maximum limit, the number turns red. 
 
 $(document).ready(function() {
     let textAreaElement = $('#textArea');

@@ -7,34 +7,33 @@
 const baseURL = "http://localhost:8080/"
 
 
-// calculate time ago
+// calculates how long ago a tweet was made
 function timeAgo(ts) {
   const d = new Date();
-  const nowTs = Math.floor(d.getTime() / 1000);
-  const seconds = nowTs - ts;
+  const currentDay = Math.floor(d.getTime() / 86400000);
+  const postedDay = ts / 86400000;
+  const dateDifference = Math.floor(currentDay - postedDay);
 
-  if (seconds > 2 * 24 * 3600) {
-      return "a few days ago";
+  if (dateDifference > 365) {
+    return `More than a year ago`;
   }
-  if (seconds > 24 * 3600) {
-      return "yesterday";
+  if (dateDifference > 30) {
+    return `More than 1 month ago`;
   }
-
-  if (seconds > 3600) {
-      return "a few hours ago";
+  if (dateDifference > 10) {
+    return `More than 1 week ago`;
   }
-  if (seconds > 1800) {
-      return "Half an hour ago";
+  if (dateDifference > 1) {
+    return `${dateDifference} days ago`;
   }
-  if (seconds > 60) {
-      return Math.floor(seconds / 60) + " minutes ago";
+  if (dateDifference === 1) {
+    return `1 day ago`;
   }
-  return "A long time ago"
+  if (dateDifference < 1) {
+    return `A few hours ago`;
+  }
 }
 
-
-
-// Create Tweet object/Render on page
 
 $(document).ready(() => {
   
@@ -43,7 +42,8 @@ $(document).ready(() => {
     $("#textArea").focus();
   });
 
-  // Creates a post request once a user enters a tweet, and clicks submit. If there is an character requirements have not been met, an error message slides into place.
+  // Creates a post request once a user enters a tweet, and clicks submit. If the character requirements have not been met, an error message slides into place.
+
   $('#postTweet').on('submit', (event) => {
     event.preventDefault();
     const $textAreaLength = $('#textArea').val().length;
@@ -64,14 +64,15 @@ $(document).ready(() => {
     }
   });
 
+  //Retrieves tweets that have been posted to the /tweets URL.
   function loadTweets() {
-    // 
     $.get(`${baseURL}tweets`, (data) => {
       $("#tweets-container").empty()
       renderTweets(data)
     })
   }
 
+//Renders each tweet and adds it to the tweet container making the tweet visable to the user. 
 
   function renderTweets(tweetData) {
     for(let eachTweet of tweetData){
@@ -79,6 +80,7 @@ $(document).ready(() => {
     }
   }
 
+  //Creates new HTML elements
   function createTweetElement(tweetData) {
     const $tweet = $("<article>").addClass("tweets");
 
