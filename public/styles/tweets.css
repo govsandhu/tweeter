@@ -1,9 +1,6 @@
 .tweets {
     background-color: white;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-top: 0px;
+    padding: 0px;
     border: 2px solid black;
     border-radius: 6px; 
     margin-left: 2em;
