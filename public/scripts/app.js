@@ -29,7 +29,7 @@ function timeAgo(ts) {
     return `1 day ago`;
   }
   if (dateDifference < 1) {
-    return `Earlier today`;
+    return `Less than a day ago`;
   }
 }
 
